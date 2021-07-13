@@ -1,23 +1,46 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import LoadingPage from './components/LoadingPage';
+import RickAndMortyApp from './components/RickAndMortyApp';
 
 function App() {
+
+  const [loading, setLoading] = useState (true);
+  const [apiData, setApiData] = useState (null);
+  const [residentsData, setResidentsData] = useState ([]);
+  const [location, setLocation] = useState (null);
+  useEffect (
+    () => {
+      const url = `https://rickandmortyapi.com/api/location/${Math.floor (Math.random () *  108 + 1)}`;
+      fetch (url).then (response => response.json ().then (data => setApiData (data)));
+      setResidentsData ([])
+    }, []
+    )
+  useEffect (
+    () => {
+      if (location) {
+        const url = `https://rickandmortyapi.com/api/location/?name=${location}`;
+        fetch (url).then (response => response.json ().then (data => setApiData (data.results[0])));
+        setResidentsData ([])
+      }
+    }, [location]
+  )
+  useEffect (
+    () => {
+      if (apiData) {
+        setLoading (false);
+      }
+    }, [apiData]
+  )
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {
+        loading
+        ?
+        <LoadingPage />
+        :
+        <RickAndMortyApp location={location} setLocation={setLocation} apiData={apiData} residentsData={residentsData} setResidentsData={setResidentsData} />
+      }
     </div>
   );
 }

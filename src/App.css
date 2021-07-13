@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
+:root {
+  --background: #382933;
+  --color1: #3B5249;
+  --color2: #519872;
+  --color3: #A4B494;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.LoadingPage {
+  background-image: url('/src/images/background.jpg');
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
 }
-
-.App-link {
-  color: #61dafb;
+.LoadingImg {
+  width: 15%;
+  animation: loading ease-in-out 3s infinite alternate;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
+.LoadingLogo {
+  width: 30%;
+}
+.LoadingPhrase {
+  font-family: schwifty;
+  font-size: 3rem;
+}
+@keyframes loading {
+  100% {
     transform: rotate(360deg);
   }
+}
+/* App */
+.RickAndMortyApp {
+  background-image: linear-gradient(#0000005a, #0000005a), url('/src/images/background.jpg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; 
+}
+/* SearchBox */
+.SearchBox {
+  box-sizing: border-box;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  background-image: linear-gradient(#3829335a, #3829335a ), url('/src/images/header.jpg');
+  background-size: cover;
+  background-position: bottom;
+  padding-bottom: 3rem;
+}
+.SearchBox img {
+  width: 25%;
+}
+.Search {
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+  width: 33.33%;
+}
+.Search button {
+  font-family: 'Play', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border: 5px solid var(--color2);
+  background-color: var(--background);
+  color: var(--color3);
+}
+.Search button:hover {
+  cursor: pointer;
+  background-color: var(--color2);
+  color: black;
+}
+.Search input {
+  padding: 0.5rem;
+  font-family: 'Play', sans-serif;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-align: center;
+  border-radius: 0.5rem 0 0 0.5rem;
+  border: 5px solid var(--color2);
+}
+/* Location */
+.LocationInfo {
+  box-sizing: border-box;
+  height: 10vh;
+  font-family: Schwifty;
+  font-size: 1.5rem;
+  background-color: black;
+  box-shadow: 0px 0px 15px 10px rgb(0, 0, 0);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+.LocationItem {
+  display: flex;
+  color: var(--color2);
+}
+.LocationItemInfo {
+  margin-left: 1rem;
+  color: var(--color3);
+}
+/* Resident */
+.residentsBackground {
+  display: flex;
+  justify-content: center;
+  min-height: 50vh;
+}
+.ResidentsContainer {
+  background-color: var(--background);
+  margin-bottom: 5vh;
+  border-radius: 0.5rem;
+  box-shadow: 10px 10px 30px 10px rgba(0,0,0,0.8);
+  width: 75%;
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  row-gap: 3rem;
+  align-items: center;
+  justify-items: center;
+}
+.residentImage {
+  border-radius: 0.5rem;
+}
+.residentInformation {
+  box-sizing: border-box;
+  width: 300px;
+  height: 300px;
+  border-radius: 0.5rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.residentInformation-false {
+  background-color: #0000009a;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.residentInformation-true {
+  background-color: #0000009a;
+  opacity: 100%;
+  transition: opacity 0.5s ease-in;
+}
+.residentImage {
+  color: white;
+}
+.residentName {
+  font-weight: 700;
+}
+.residentGenderStatus {
+  font-weight: 300;
+}
+.name-Alive {
+  color: green;
+}
+.name-Dead {
+  color: red;
+}
+.name-unknown {
+  color: yellow;
+}
+.residentsZero {
+  width: 100%;
+}
+.residentsZero {
+  font-family: Schwifty;
+  color: var(--color3);
+  text-align: center;
+  font-size: 2rem;
 }
