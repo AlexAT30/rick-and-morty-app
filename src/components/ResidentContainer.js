@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import ResidentsInfo from "./ResidentInfo";
 
 const ResidentContainer = ({ residentsUrl, residentsData, setResidentsData }) => {
+  // Hace fetch de cada una de las url obtenidas de la API y las agrega en un arreglo
   useEffect (
     () => {
       residentsUrl.forEach( (element) => {
@@ -12,6 +13,7 @@ const ResidentContainer = ({ residentsUrl, residentsData, setResidentsData }) =>
       });
     }, [setResidentsData, residentsUrl]
   )
+  // Nos pinta la informacion de los residentes en una lista con un limite de 9 residentes
   const residentsList = residentsData.map ((item, index) => {
     if (index < 9) {
       return <ResidentsInfo key={item.id} name={item.name} species={item.species} image={item.image} gender={item.gender} status={item.status} origin={item.origin} episode={item.episode} />
