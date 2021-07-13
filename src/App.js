@@ -6,7 +6,7 @@ import RickAndMortyApp from './components/RickAndMortyApp';
 function App() {
 
   const [loading, setLoading] = useState (true);
-  const [apiData, setApiData] = useState (null);
+  const [apiData, setApiData] = useState ('');
   const [residentsData, setResidentsData] = useState ([]);
   const [location, setLocation] = useState (null);
   useEffect (
@@ -20,16 +20,29 @@ function App() {
     () => {
       if (location) {
         const url = `https://rickandmortyapi.com/api/location/?name=${location}`;
-        fetch (url).then (response => response.json ().then (data => setApiData (data.results[0])));
-        setResidentsData ([])
+        fetch (url).then (response => response.json ().then (data => {
+          if (!(data.hasOwnProperty ('error'))) {
+            setApiData (data.results[0])
+          }
+          else {
+            setApiData ({
+              name: 'unknown',
+              type: 'unknown',
+              dimension: 'unknown',
+              residents: []
+            })
+          }
+        }));
+        setResidentsData ([]);
       }
     }, [location]
-  )
-  useEffect (
-    () => {
-      if (apiData) {
-        setLoading (false);
-      }
+    )
+    useEffect (
+      () => {
+        if (apiData ) {
+          console.log(apiData);
+          setLoading (false);
+        }
     }, [apiData]
   )
   return (

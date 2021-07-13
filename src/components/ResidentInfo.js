@@ -10,7 +10,16 @@ const ResidentsInfo = ({ name, species, image, gender, status, origin, episode }
           width: '300px',
           height: '300px'
         }
-      } onMouseEnter={ () => setImageHover(true)} onMouseLeave={() =>setImageHover(false)} >
+      } onMouseEnter={ () => setImageHover(true)} onMouseLeave={() =>setImageHover(false)} onClick={
+        () => {
+          if (imageHover) {
+            setImageHover (false);
+          }
+          else {
+            setImageHover (true);
+          }
+        }
+      } >
         <div className={`residentInformation residentInformation-${imageHover}`}>
           <p className={`residentName name-${status}`}> {name} </p>
           <p className='residentSpecies'> {`Specie: ${species}`} </p>
