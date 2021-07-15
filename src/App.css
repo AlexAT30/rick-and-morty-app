@@ -164,7 +164,7 @@
 }
 .residentInformation-true {
   background-color: #0000009a;
-  opacity: 100%;
+  opacity: 100;
   transition: opacity 0.5s ease-in;
 }
 .residentImage {
